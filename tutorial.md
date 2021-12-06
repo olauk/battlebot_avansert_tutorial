@@ -31,12 +31,12 @@ radio.onReceivedValue(function (name, value) {
 
 ### Steg 2
 
-Lag tre variabler, _Kjør_, _AvPåBil_ og _Justering_ som dere bruker for å oppbevare verdiene som mottas via radio.  
-Legg inn i Hvis ellers blokken at: 
+Lag tre variabler, ``||variables:Kjør||``, ``||variables:AvPå_Bil||`` og ``||variables:Justering||`` som dere bruker for å oppbevare verdiene som mottas via radio.  
+Legg inn i ``||logic:Hvis ellers||`` blokken at: 
 
-Hvis vi mottar H - sett Kjør til _value_  
-Hvis vi mottar A - sett AvPå_Bil til _value_    
-Hvis vi mottar S - sett Jusering til _value_
+Hvis vi mottar H - sett ``||variables:Kjør||`` til _value_  
+Hvis vi mottar A - sett ``||variables:AvPåBil||`` til _value_    
+Hvis vi mottar S - sett ``||variables:Justering||`` til _value_
 
 ```blocks
 radio.onReceivedValue(function (name, value) {
@@ -72,7 +72,7 @@ radio.onReceivedValue(function (name, value) {
 ```
 
 ### Steg 3
-Sett radiogruppe og lag variablene _Stopp_, _venstrejustering_ og _høyrejustering_ i ved start.  
+Sett ``||radio:radiogruppe||`` og lag variablene ``||variables:Stopp||``, ``||variables:venstrejustering||`` og ``||variables:høyrejustering||`` i ved start.  
 Sett stopp til 0 og radiogruppe til samme tall som dere brukte når dere programmerte fjernkontrollen.
 
 ```blocks
@@ -84,8 +84,8 @@ let Venstrejustering = 0
 
 ### Steg 5
 I gjenta for alltid vil dere at battleboten skal undersøke om den er på eller ikke. 
-Bruk en hvis ellers blokk. 
-Hvis AvPå_Bil = 1 skal Battleboten kjøre, ellers skal den stoppe. 
+Bruk en ``||logic:hvis ellers||`` blokk. 
+Hvis ``||variables:AvPå_Bil = 1||`` skal Battleboten kjøre, ellers skal den stoppe. 
 Bruk blokkene fra DF-Driver for å stoppe motorene. ``||DF-Driver:Motor M1 dir CW speed||``
 
 ```blocks
@@ -124,7 +124,7 @@ basic.forever(function () {
 ```
 
 ### Steg 6
-Hvis Kjør < 0 så vil dette bety at vi med fjernkontrollen vil at battleboten skal gå fremover. Vi kan da bruke ``|math:absoluttverdi||`` blokken og legge inn absoluttverdien av Kjør som farten til motorene når Kjør < 0.
+Hvis ``||variables:Kjør < 0||`` så vil dette bety at vi med fjernkontrollen vil at battleboten skal gå fremover. Vi kan da bruke ``|math:absoluttverdi||`` blokken og legge inn absoluttverdien av Kjør som farten til motorene når Kjør < 0.
  
 ```blocks
 basic.forever(function () {
