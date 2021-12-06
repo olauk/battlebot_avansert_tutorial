@@ -55,7 +55,7 @@ radio.onReceivedValue(function (name, value) {
 
 Vi skal spare oss for litt jobb og gjør en endring i Kjør = value.  
 Verdien vi får fra fjernkontrollen vil være mellom -90 og 90, der -90 vil være det vi tenker på som full fart fremover. Vi vil derfor regne om disse verdiene slik at full fart fremover fra fjernkontrollen blir full fart fremover til motorene. Vi kan styre farten på motorene med verdier fra 0 til 255. 
-Vi bruker derfor ```||math:regn om||```og regner om verdien til value fra -90, 90 til -200, 200.
+Vi bruker derfor ``||math:regn om||`` og regner om verdien til value fra -90, 90 til -200, 200.
 
 ```blocks
 radio.onReceivedValue(function (name, value) {
