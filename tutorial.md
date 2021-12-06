@@ -113,7 +113,7 @@ basic.forever(function () {
     if (AvPå_Bil) {
         if (Kjør >= 0) {
             motor.MotorRun(motor.Motors.M1, motor.Dir.CCW, Kjør)
-            motor.MotorRun(motor.Motors.M2, motor.Dir.CCW, Kjør)
+            motor.MotorRun(motor.Motors.M2, motor.Dir.CW, Kjør)
         } else {
       }
     } else {
@@ -131,10 +131,10 @@ basic.forever(function () {
     if (AvPå_Bil) {
         if (Kjør >= 0) {
             motor.MotorRun(motor.Motors.M1, motor.Dir.CCW, Kjør)
-            motor.MotorRun(motor.Motors.M2, motor.Dir.CCW, Kjør)
+            motor.MotorRun(motor.Motors.M2, motor.Dir.CW, Kjør)
         } else {
             motor.MotorRun(motor.Motors.M1, motor.Dir.CW, Math.abs(Kjør))
-            motor.MotorRun(motor.Motors.M2, motor.Dir.CW, Math.abs(Kjør))
+            motor.MotorRun(motor.Motors.M2, motor.Dir.CCW, Math.abs(Kjør))
         }
     } else {
         motor.MotorRun(motor.Motors.M1, motor.Dir.CCW, Stopp)
