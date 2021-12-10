@@ -54,13 +54,13 @@ radio.onReceivedValue(function (name, value) {
 ### Steg 3
 
 Vi skal spare oss for litt jobb og gjør en endring i Kjør = value.  
-Verdien vi får fra fjernkontrollen vil være mellom -90 og 90, der -90 vil være det vi tenker på som full fart fremover. Vi vil derfor regne om disse verdiene slik at full fart fremover fra fjernkontrollen blir full fart fremover til motorene. Vi kan styre farten på motorene med verdier fra 0 til 255. 
-Vi bruker derfor ``||math:regn om||`` og regner om verdien til value fra -90, 90 til -200, 200.
+Verdien vi får fra fjernkontrollen vil være mellom -45 og 45, der -45 vil være det vi tenker på som full fart fremover. Vi vil derfor regne om disse verdiene slik at full fart fremover fra fjernkontrollen blir full fart fremover til motorene. Vi kan styre farten på motorene med verdier fra 0 til 255. 
+Vi bruker derfor ``||math:regn om||`` og regner om verdien til value fra -45, 45 til -200, 200.
 
 ```blocks
 radio.onReceivedValue(function (name, value) {
     if (name == "H") {
-        Kjør = Math.map(value, -90, 90, -200, 200)
+        Kjør = Math.map(value, -45, 45, -200, 200)
     }
     if (name == "A") {
         AvPå_Bil = value
@@ -147,7 +147,7 @@ basic.forever(function () {
 Det er flere mulige måter å legge inn sving på. Her kommer en mulighet. Kanskje finner dere en bedre måte å gjøre det på?
 Vi har allerede lagd en variabel  for høyrejustering og en variabel for venstrejustering. Disse skal vi bruke for å justere farten på motorene slik at battleboten svinger.
 Når battlebot skal svinge mot venstre, må venstre motor gå saktere og motsatt når man svinger mot høyre.
-Vi kan sette venstrejustering = Kjør - (regn om _Justering_ fra lav 0 til høy - 90 til lav Kjør og høy Kjør * -1)  
+Vi kan sette venstrejustering = Kjør - (regn om _Justering_ fra lav 0 til høy - 45 til lav Kjør og høy Kjør * -1)  
 På den måten blir justeringen av svingen ikke større enn den farten som vi sier battleboten skal kjøre i.
 Vi gjøre det samme for høyrejustering. 
 Farten til motorene vil da for venstre motor (M1) blir (``||variables:Kjør||`` - ``||variables:Venstrejustering||``) og tilsvarende med høyrejustering på høyre motor.
@@ -157,13 +157,13 @@ Farten til motorene vil da for venstre motor (M1) blir (``||variables:Kjør||`` 
 basic.forever(function () {
     if (AvPå_Bil) {
         if (Kjør >= 0) {
-            Venstrejustering = Kjør - Math.map(Justering, 0, -90, Kjør, Kjør * -1)
-            Høyrejustering = Kjør - Math.map(Justering, 0, 90, Kjør, Kjør * -1)
+            Venstrejustering = Kjør - Math.map(Justering, 0, -45, Kjør, Kjør * -1)
+            Høyrejustering = Kjør - Math.map(Justering, 0, 45, Kjør, Kjør * -1)
             motor.MotorRun(motor.Motors.M1, motor.Dir.CCW, Kjør - Venstrejustering)
             motor.MotorRun(motor.Motors.M2, motor.Dir.CCW, Kjør - Høyrejustering)
         } else {
-            Venstrejustering = Kjør + Math.map(Justering, 0, -90, Kjør, Kjør * -1)
-            Høyrejustering = Kjør + Math.map(Justering, 0, 90, Kjør, Kjør * -1)
+            Venstrejustering = Kjør + Math.map(Justering, 0, -45, Kjør, Kjør * -1)
+            Høyrejustering = Kjør + Math.map(Justering, 0, 45, Kjør, Kjør * -1)
             motor.MotorRun(motor.Motors.M1, motor.Dir.CW, Math.abs(Kjør) - Venstrejustering)
             motor.MotorRun(motor.Motors.M2, motor.Dir.CW, Math.abs(Kjør) - Høyrejustering)
         }
